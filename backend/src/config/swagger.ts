@@ -9,7 +9,7 @@ const swaggerDefinition = {
   },
   servers: [
     {
-      url: "http://localhost:5000", // change later for Render/Vercel
+      url: "https://insurance-tracker-0133.onrender.com"
     },
   ],
 };
