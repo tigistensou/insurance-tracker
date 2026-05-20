@@ -5,6 +5,29 @@ import bcrypt from 'bcryptjs';
 
 const router = express.Router();
 
+/**
+ * @swagger
+ * /api/auth/register:
+ *   post:
+ *     summary: Register a new user
+ *     tags: [Auth]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               username:
+ *                 type: string
+ *               password:
+ *                 type: string
+ *     responses:
+ *       201:
+ *         description: User created successfully
+ *       400:
+ *         description: User already exists
+ */
 router.post('/register', async (req, res) => {
   try {
     const { username, password } = req.body;
@@ -31,7 +54,30 @@ router.post('/register', async (req, res) => {
     });
   }
 });
-
+/**
+ * @openapi
+ * /api/auth/login:
+ *   post:
+ *     summary: Login user
+ *     tags:
+ *       - Auth
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               username:
+ *                 type: string
+ *               password:
+ *                 type: string
+ *     responses:
+ *       200:
+ *         description: Login successful (returns JWT token)
+ *       401:
+ *         description: Invalid credentials
+ */
 router.post('/login', async (req, res) => {
   try {
     const { username, password } = req.body;

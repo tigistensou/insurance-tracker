@@ -3,7 +3,28 @@ import express from 'express';
 import Customer from '../models/Customer';
 
 const router = express.Router();
-
+/**
+ * @openapi
+ * /customers:
+ *   post:
+ *     summary: Create a customer
+ *     tags:
+ *       - Customers
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               name:
+ *                 type: string
+ *               policyNumber:
+ *                 type: string
+ *     responses:
+ *       201:
+ *         description: Customer created
+ */
 router.post('/', protect, async (req, res) => {
   try {
     console.log(req.body);
@@ -20,7 +41,17 @@ router.post('/', protect, async (req, res) => {
     });
   }
 });
-
+/**
+ * @openapi
+ * /api/customers:
+ *   get:
+ *     summary: Get all customers
+ *     tags:
+ *       - Customers
+ *     responses:
+ *       200:
+ *         description: List of customers
+ */
 router.get('/', protect, async (_req, res) => {
   try {
     const customers = await Customer.find();
